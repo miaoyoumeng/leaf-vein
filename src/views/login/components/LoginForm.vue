@@ -58,13 +58,13 @@ const keepAliveStore = useKeepAliveStore();
 type FormInstance = InstanceType<typeof ElForm>;
 const loginFormRef = ref<FormInstance>();
 const loginRules = reactive({
-    username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
+    uid: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
     password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
 });
 
 const loading = ref(false);
 const loginForm = reactive<Login.ReqLoginForm>({
-    username: '',
+    uid: '',
     password: ''
 });
 
@@ -77,7 +77,7 @@ const login = (formEl: FormInstance | undefined) => {
         try {
             // 1.执行登录接口
             const { data } = await loginApi({ ...loginForm, password: md5(loginForm.password) });
-            userStore.setToken(data.access_token);
+            userStore.setToken(data.token);
 
             // 2.添加动态路由
             await initDynamicRouter();

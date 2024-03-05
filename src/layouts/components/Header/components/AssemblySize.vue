@@ -19,6 +19,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { usePageStore } from '@/stores/modules/page';
+import { AssemblySizeType } from '@/typings/global';
 
 const pageStore = usePageStore();
 const assemblySize = computed(() => pageStore.assemblySize);
@@ -31,7 +32,7 @@ const assemblySizeList = [
 
 const setAssemblySize = (item: AssemblySizeType) => {
     if (assemblySize.value === item) {
-      return;
+        return;
     }
     pageStore.setGlobalState('assemblySize', item);
 };

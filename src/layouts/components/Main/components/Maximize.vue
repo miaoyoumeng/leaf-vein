@@ -9,7 +9,7 @@ import { usePageStore } from '@/stores/modules/page';
 
 const pageStore = usePageStore();
 const exitMaximize = () => {
-    pageStore.setGlobalState("maximize", false);
+    pageStore.setGlobalState('maximize', false);
 };
 </script>
 

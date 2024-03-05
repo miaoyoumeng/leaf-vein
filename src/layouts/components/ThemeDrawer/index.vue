@@ -141,6 +141,7 @@ import { usePageStore } from '@/stores/modules/page';
 import { DEFAULT_PRIMARY } from '@/routers/config';
 import mittBus from '@/utils/mittBus';
 import SwitchDark from '@/components/SwitchDark/index.vue';
+import { LayoutType } from '@/typings/global';
 
 const { changePrimary, changeGreyOrWeak, setAsideTheme, setHeaderTheme } = useTheme();
 

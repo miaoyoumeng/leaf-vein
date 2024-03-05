@@ -10,13 +10,13 @@ export const logoutApi = () => {
  */
 // 用户登录
 export const loginApi = params => {
-    return http.post('/sso/login', params);
+    return http.post('/login/uid/sign/on', params);
 };
 
 // 登录模块
 export namespace Login {
     export interface ReqLoginForm {
-        username: string;
+        uid: string;
         password: string;
     }
     export interface ResLogin {

@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia';
 import { AuthState } from '@/stores/interface';
-// import { getAuthMenuListApi, getAuthButtonListApi } from '@/api/auth';
+import { getAuthMenuListApi, getAuthButtonListApi } from '@/api/auth';
+import { Menu } from '@/typings/global.d';
 
 export const useAuthStore = defineStore({
-    id: 'you-user-auth',
+    id: 'leaf-vein-auth',
     state: (): AuthState => ({
         // 按钮权限列表
         authButtonList: {},
@@ -27,13 +28,14 @@ export const useAuthStore = defineStore({
     actions: {
         // Get AuthButtonList
         async getAuthButtonList() {
-            // const { data } = await getAuthButtonListApi();
-            // this.authButtonList = data;
+            const { data } = await getAuthButtonListApi();
+            this.authButtonList = data;
         },
         // Get AuthMenuList
         async getAuthMenuList() {
-            // const { data } = await getAuthMenuListApi();
-            // this.authMenuList = data;
+            const { data } = await getAuthMenuListApi();
+            console.log(data);
+            this.authMenuList = data;
         },
         // Set RouteName
         async setRouteName(name: string) {

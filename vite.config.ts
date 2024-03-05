@@ -76,7 +76,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
             cors: true,
             proxy: {
                 '/api': {
-                    target: 'http://api.example.com',
+                    target: 'http://127.0.0.1:4523/m1/4079066-0-default',
                     changeOrigin: true,
                     rewrite: path => path.replace(/^\/api/, '')
                 }
@@ -109,6 +109,11 @@ function wrapperEnv(envConf: Recordable): ViteEnv {
         let realName = envConf[envName].replace(/\\n/g, '\n');
         realName = realName === 'true' ? true : realName === 'false' ? false : realName;
         if (envName === 'VITE_PORT') realName = Number(realName);
+        if (envName === 'VITE_PROXY') {
+            try {
+                realName = JSON.parse(realName);
+            } catch (error) {}
+        }
         ret[envName] = realName;
     }
     return ret;
