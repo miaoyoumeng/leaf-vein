@@ -60,7 +60,7 @@ const refresh = () => {
 
 // maximize current page
 const maximize = () => {
-    pageStore.setGlobalState('maximize', true);
+    pageStore.setPageState('maximize', true);
 };
 
 // Close Current

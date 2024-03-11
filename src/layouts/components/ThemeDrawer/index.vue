@@ -178,7 +178,7 @@ const colorList = [
 
 // 设置布局方式
 const setLayout = (val: LayoutType) => {
-    pageStore.setGlobalState('layout', val);
+    pageStore.setPageState('layout', val);
     setAsideTheme();
 };
 

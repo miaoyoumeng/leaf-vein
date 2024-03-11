@@ -33,6 +33,6 @@ const languageList = [
 
 const changeLanguage = (lang: string) => {
     i18n.locale.value = lang;
-    pageStore.setGlobalState('language', lang as LanguageType);
+    pageStore.setPageState('language', lang as LanguageType);
 };
 </script>

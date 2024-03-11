@@ -62,10 +62,10 @@ const screenWidth = ref(0);
 const listeningWindow = useDebounceFn(() => {
     screenWidth.value = document.body.clientWidth;
     if (!isCollapse.value && screenWidth.value < 1200) {
-        pageStore.setGlobalState('isCollapse', true);
+        pageStore.setPageState('isCollapse', true);
     }
     if (isCollapse.value && screenWidth.value > 1200) {
-        pageStore.setGlobalState('isCollapse', false);
+        pageStore.setPageState('isCollapse', false);
     }
 }, 100);
 window.addEventListener('resize', listeningWindow, false);

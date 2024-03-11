@@ -1,5 +1,7 @@
 /* UserInfo 用户信息 */
 
+import { AssemblySizeType, LanguageType, LayoutType, Menu } from '@/typings/global.d';
+
 export interface UserInfo {
     token: string;
     info: {
@@ -18,8 +20,8 @@ export interface AuthState {
     authMenuList: Menu.MenuOptions[];
 }
 
-/* GlobalState */
-export interface GlobalState {
+/* PageState */
+export interface PageState {
     layout: LayoutType;
     assemblySize: AssemblySizeType;
     language: LanguageType;

@@ -27,7 +27,7 @@ const i18n = useI18n();
 onMounted(() => {
     const language = pageStore.language ?? getBrowserLang();
     i18n.locale.value = language;
-    pageStore.setGlobalState('language', language as LanguageType);
+    pageStore.setPageState('language', language as LanguageType);
 });
 
 // element language

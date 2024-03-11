@@ -2,7 +2,7 @@ import http from '@/request';
 
 // 用户退出登录
 export const logoutApi = () => {
-    return http.get('/sso/logout');
+    return http.get('/logout/sign/out');
 };
 
 /**

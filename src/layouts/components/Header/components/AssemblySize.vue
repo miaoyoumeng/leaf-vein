@@ -34,6 +34,6 @@ const setAssemblySize = (item: AssemblySizeType) => {
     if (assemblySize.value === item) {
         return;
     }
-    pageStore.setGlobalState('assemblySize', item);
+    pageStore.setPageState('assemblySize', item);
 };
 </script>

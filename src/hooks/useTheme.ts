@@ -41,7 +41,7 @@ export const useTheme = () => {
             const primaryColor = isDark.value ? `${getDarkColor(val, i / 10)}` : `${getLightColor(val, i / 10)}`;
             document.documentElement.style.setProperty(`--el-color-primary-light-${i}`, primaryColor);
         }
-        pageStore.setGlobalState('primary', val);
+        pageStore.setPageState('primary', val);
     };
 
     // 灰色和弱色切换
@@ -54,7 +54,7 @@ export const useTheme = () => {
         };
         body.setAttribute('style', styles[type]);
         const propName = type === 'grey' ? 'isWeak' : 'isGrey';
-        pageStore.setGlobalState(propName, false);
+        pageStore.setPageState(propName, false);
     };
 
     // 设置菜单样式

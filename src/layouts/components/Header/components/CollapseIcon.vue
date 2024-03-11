@@ -8,7 +8,7 @@
 import { usePageStore } from '@/stores/modules/page';
 
 const pageStore = usePageStore();
-const changeCollapse = () => pageStore.setGlobalState('isCollapse', !pageStore.isCollapse);
+const changeCollapse = () => pageStore.setPageState('isCollapse', !pageStore.isCollapse);
 </script>
 
 <style scoped lang="scss">

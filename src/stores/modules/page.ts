@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { GlobalState } from '@/stores/interface';
+import { PageState } from '@/stores/interface';
 import { DEFAULT_PRIMARY } from '@/routers/config';
 import piniaPersistConfig from '@/stores/helper/persist';
 
@@ -7,7 +7,7 @@ const id = 'you-page';
 export const usePageStore = defineStore({
     id: id,
     // 修改默认值之后，需清除 localStorage 数据
-    state: (): GlobalState => ({
+    state: (): PageState => ({
         // 布局模式 (纵向：vertical | 经典：classic | 横向：transverse | 分栏：columns)
         layout: 'vertical',
         // element 组件大小
@@ -45,14 +45,10 @@ export const usePageStore = defineStore({
     }),
     getters: {},
     actions: {
-        // Set GlobalState
-        setGlobalState(...args: ObjToKeyValArray<GlobalState>) {
+        // Set PageState
+        setPageState(...args: [keyof PageState, PageState[keyof PageState]]) {
             this.$patch({ [args[0]]: args[1] });
         }
     },
     persist: piniaPersistConfig(id)
 });
-
-type ObjToKeyValArray<T> = {
-    [K in keyof T]: [K, T[K]];
-}[keyof T];
