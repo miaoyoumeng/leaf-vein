@@ -1,7 +1,7 @@
 <!-- 这里是一次性加载 LayoutComponents -->
 <template>
-    <component :is="LayoutComponents[layout]" />
-    <ThemeDrawer />
+  <component :is="LayoutComponents[layout]" />
+  <ThemeDrawer />
 </template>
 
 <script setup lang="ts" name="layout">
@@ -14,10 +14,10 @@ import LayoutTransverse from './LayoutTransverse/index.vue';
 import LayoutColumns from './LayoutColumns/index.vue';
 
 const LayoutComponents: Record<LayoutType, Component> = {
-    vertical: LayoutVertical,
-    classic: LayoutClassic,
-    transverse: LayoutTransverse,
-    columns: LayoutColumns
+  vertical: LayoutVertical,
+  classic: LayoutClassic,
+  transverse: LayoutTransverse,
+  columns: LayoutColumns
 };
 
 const pageStore = usePageStore();
@@ -26,6 +26,6 @@ const layout = computed(() => pageStore.layout);
 
 <style scoped lang="scss">
 .layout {
-    min-width: 600px;
+  min-width: 600px;
 }
 </style>

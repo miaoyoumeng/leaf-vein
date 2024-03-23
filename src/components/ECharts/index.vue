@@ -1,5 +1,5 @@
 <template>
-    <div id="echarts" ref="chartRef" :style="echartsStyle" />
+  <div id="echarts" ref="chartRef" :style="echartsStyle" />
 </template>
 
 <script setup lang="ts" name="ECharts">
@@ -11,60 +11,60 @@ import { usePageStore } from '@/stores/modules/page';
 import { storeToRefs } from 'pinia';
 
 interface Props {
-    option: ECOption;
-    renderer?: 'canvas' | 'svg';
-    resize?: boolean;
-    theme?: Object | string;
-    width?: number | string;
-    height?: number | string;
-    onClick?: (event: ECElementEvent) => any;
+  option: ECOption;
+  renderer?: 'canvas' | 'svg';
+  resize?: boolean;
+  theme?: Object | string;
+  width?: number | string;
+  height?: number | string;
+  onClick?: (event: ECElementEvent) => any;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-    renderer: 'canvas',
-    resize: true
+  renderer: 'canvas',
+  resize: true
 });
 
 const echartsStyle = computed(() => {
-    return props.width || props.height
-        ? { height: props.height + 'px', width: props.width + 'px' }
-        : { height: '100%', width: '100%' };
+  return props.width || props.height
+    ? { height: props.height + 'px', width: props.width + 'px' }
+    : { height: '100%', width: '100%' };
 });
 
 const chartRef = ref<HTMLDivElement | HTMLCanvasElement>();
 const chartInstance = ref<EChartsType>();
 
 const draw = () => {
-    if (chartInstance.value) {
-        chartInstance.value.setOption(props.option, { notMerge: true });
-    }
+  if (chartInstance.value) {
+    chartInstance.value.setOption(props.option, { notMerge: true });
+  }
 };
 
 watch(props, () => {
-    draw();
+  draw();
 });
 
 const handleClick = (event: ECElementEvent) => props.onClick && props.onClick(event);
 
 const init = () => {
-    if (!chartRef.value) return;
-    chartInstance.value = echarts.getInstanceByDom(chartRef.value);
+  if (!chartRef.value) return;
+  chartInstance.value = echarts.getInstanceByDom(chartRef.value);
 
-    if (!chartInstance.value) {
-        chartInstance.value = markRaw(
-            echarts.init(chartRef.value, props.theme, {
-                renderer: props.renderer
-            })
-        );
-        chartInstance.value.on('click', handleClick);
-        draw();
-    }
+  if (!chartInstance.value) {
+    chartInstance.value = markRaw(
+      echarts.init(chartRef.value, props.theme, {
+        renderer: props.renderer
+      })
+    );
+    chartInstance.value.on('click', handleClick);
+    draw();
+  }
 };
 
 const resize = () => {
-    if (chartInstance.value && props.resize) {
-        chartInstance.value.resize({ animation: { duration: 300 } });
-    }
+  if (chartInstance.value && props.resize) {
+    chartInstance.value.resize({ animation: { duration: 300 } });
+  }
 };
 
 const debouncedResize = useDebounceFn(resize, 300, { maxWait: 800 });
@@ -73,26 +73,26 @@ const pageStore = usePageStore();
 const { maximize, isCollapse, tabs, footer } = storeToRefs(pageStore);
 
 watch(
-    () => [maximize, isCollapse, tabs, footer],
-    () => {
-        debouncedResize();
-    },
-    { deep: true }
+  () => [maximize, isCollapse, tabs, footer],
+  () => {
+    debouncedResize();
+  },
+  { deep: true }
 );
 
 onMounted(() => {
-    nextTick(() => init());
-    window.addEventListener('resize', debouncedResize);
+  nextTick(() => init());
+  window.addEventListener('resize', debouncedResize);
 });
 
 onBeforeUnmount(() => {
-    chartInstance.value?.dispose();
-    window.removeEventListener('resize', debouncedResize);
+  chartInstance.value?.dispose();
+  window.removeEventListener('resize', debouncedResize);
 });
 
 defineExpose({
-    getInstance: () => chartInstance.value,
-    resize,
-    draw
+  getInstance: () => chartInstance.value,
+  resize,
+  draw
 });
 </script>

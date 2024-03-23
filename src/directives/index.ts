@@ -8,21 +8,21 @@ import throttle from './modules/throttle';
 import longpress from './modules/longpress';
 
 const directivesList: { [key: string]: Directive } = {
-    auth,
-    copy,
-    waterMarker,
-    draggable,
-    debounce,
-    throttle,
-    longpress
+  auth,
+  copy,
+  waterMarker,
+  draggable,
+  debounce,
+  throttle,
+  longpress
 };
 
 const directives = {
-    install: function (app: App<Element>) {
-        Object.keys(directivesList).forEach(key => {
-            app.directive(key, directivesList[key]);
-        });
-    }
+  install: function (app: App<Element>) {
+    Object.keys(directivesList).forEach(key => {
+      app.directive(key, directivesList[key]);
+    });
+  }
 };
 
 export default directives;

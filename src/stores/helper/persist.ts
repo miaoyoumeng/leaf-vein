@@ -7,14 +7,14 @@ import { PersistedStateOptions } from 'pinia-plugin-persistedstate';
  * @return persist
  * */
 const piniaPersistConfig = (key: string, paths?: Array<string>) => {
-    const persist: PersistedStateOptions = {
-        key: key,
-        storage: localStorage,
-        // storage: sessionStorage,
-        paths: paths,
-        debug: true
-    };
-    return persist;
+  const persist: PersistedStateOptions = {
+    key: key,
+    storage: localStorage,
+    // storage: sessionStorage,
+    paths: paths,
+    debug: true
+  };
+  return persist;
 };
 
 export default piniaPersistConfig;
