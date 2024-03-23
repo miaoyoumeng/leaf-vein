@@ -1,7 +1,7 @@
 <template>
-    <el-config-provider :locale="locale" :size="assemblySize" :button="buttonConfig">
-        <router-view></router-view>
-    </el-config-provider>
+  <el-config-provider :locale="locale" :size="assemblySize" :button="buttonConfig">
+    <router-view></router-view>
+  </el-config-provider>
 </template>
 
 <script setup lang="ts">
@@ -25,16 +25,16 @@ initTheme();
 // init language
 const i18n = useI18n();
 onMounted(() => {
-    const language = pageStore.language ?? getBrowserLang();
-    i18n.locale.value = language;
-    pageStore.setPageState('language', language as LanguageType);
+  const language = pageStore.language ?? getBrowserLang();
+  i18n.locale.value = language;
+  pageStore.setPageState('language', language as LanguageType);
 });
 
 // element language
 const locale = computed(() => {
-    if (pageStore.language == 'zh') return zhCn;
-    if (pageStore.language == 'en') return en;
-    return getBrowserLang() == 'zh' ? zhCn : en;
+  if (pageStore.language == 'zh') return zhCn;
+  if (pageStore.language == 'en') return en;
+  return getBrowserLang() == 'zh' ? zhCn : en;
 });
 
 // element assemblySize

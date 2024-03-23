@@ -6,32 +6,32 @@
 import type { Directive, DirectiveBinding } from 'vue';
 import { ElMessage } from 'element-plus';
 interface ElType extends HTMLElement {
-    copyData: string | number;
-    __handleClick__: any;
+  copyData: string | number;
+  __handleClick__: any;
 }
 const copy: Directive = {
-    mounted(el: ElType, binding: DirectiveBinding) {
-        el.copyData = binding.value;
-        el.addEventListener('click', handleClick);
-    },
-    updated(el: ElType, binding: DirectiveBinding) {
-        el.copyData = binding.value;
-    },
-    beforeUnmount(el: ElType) {
-        el.removeEventListener('click', el.__handleClick__);
-    }
+  mounted(el: ElType, binding: DirectiveBinding) {
+    el.copyData = binding.value;
+    el.addEventListener('click', handleClick);
+  },
+  updated(el: ElType, binding: DirectiveBinding) {
+    el.copyData = binding.value;
+  },
+  beforeUnmount(el: ElType) {
+    el.removeEventListener('click', el.__handleClick__);
+  }
 };
 
 async function handleClick(this: any) {
-    try {
-        await navigator.clipboard.writeText(this.copyData);
-    } catch (err) {
-        console.error('复制操作不被支持或失败: ', err);
-    }
-    ElMessage({
-        type: 'success',
-        message: '复制成功'
-    });
+  try {
+    await navigator.clipboard.writeText(this.copyData);
+  } catch (err) {
+    console.error('复制操作不被支持或失败: ', err);
+  }
+  ElMessage({
+    type: 'success',
+    message: '复制成功'
+  });
 }
 
 export default copy;
